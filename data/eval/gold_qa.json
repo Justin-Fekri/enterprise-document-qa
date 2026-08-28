@@ -1,0 +1,79 @@
+[
+  {
+    "id": "q1",
+    "question": "How often must employees rotate their passwords?",
+    "role": "employee",
+    "ground_truth": "Passwords must be rotated every 90 days.",
+    "should_answer": true
+  },
+  {
+    "id": "q2",
+    "question": "What is the minimum password length?",
+    "role": "employee",
+    "ground_truth": "The minimum password length is 14 characters.",
+    "should_answer": true
+  },
+  {
+    "id": "q3",
+    "question": "How frequently are internal audits conducted?",
+    "role": "auditor",
+    "ground_truth": "Internal audits are conducted quarterly.",
+    "should_answer": true
+  },
+  {
+    "id": "q4",
+    "question": "What is the residual risk rating for ransomware?",
+    "role": "auditor",
+    "ground_truth": "Ransomware residual risk is rated High.",
+    "should_answer": true
+  },
+  {
+    "id": "q5",
+    "question": "What is the P1 incident response time?",
+    "role": "compliance",
+    "ground_truth": "P1 incidents require a 15-minute response.",
+    "should_answer": true
+  },
+  {
+    "id": "q6",
+    "question": "Who is the data protection officer?",
+    "role": "compliance",
+    "ground_truth": "The Data Protection Officer is Morgan Ellis.",
+    "should_answer": true
+  },
+  {
+    "id": "q7",
+    "question": "What is the CEO salary for 2026?",
+    "role": "employee",
+    "ground_truth": "",
+    "should_answer": false
+  },
+  {
+    "id": "q8",
+    "question": "Where is the Tokyo branch office located?",
+    "role": "employee",
+    "ground_truth": "",
+    "should_answer": false
+  },
+  {
+    "id": "q9",
+    "question": "What is the SLA for remediating critical audit findings?",
+    "role": "auditor",
+    "ground_truth": "Critical findings must be remediated within 15 calendar days.",
+    "should_answer": true
+  },
+  {
+    "id": "q10",
+    "question": "May employees share Restricted documents over personal email?",
+    "role": "employee",
+    "ground_truth": "Restricted and Confidential data must not be sent through personal email.",
+    "should_answer": true
+  },
+  {
+    "id": "q11",
+    "question": "What is the P1 incident response time?",
+    "role": "employee",
+    "ground_truth": "",
+    "should_answer": false
+  }
+]

@@ -1,0 +1,28 @@
+[project]
+name = "enterprise-document-qa"
+version = "1.0.0"
+description = "Enterprise document question-answering assistant with RAG, page-level citations, abstention, and RBAC."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+authors = [
+  { name = "JustinFE", email = "justinfe@my.yorku.ca" },
+]
+keywords = [
+  "rag",
+  "fastapi",
+  "streamlit",
+  "ragas",
+  "document-qa",
+  "enterprise",
+]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Framework :: FastAPI",
+  "License :: OSI Approved :: MIT License",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
