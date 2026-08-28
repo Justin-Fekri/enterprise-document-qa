@@ -6,7 +6,7 @@ The stack is **Python**, **FastAPI**, **Streamlit**, and **RAGAS**. The system i
 
 This is a 2026 portfolio project. No API key is required to run it. Without a key, answers are extractive (quoted from retrieved passages). Set `OPENAI_API_KEY` for generative answers and RAGAS LLM-as-judge scores.
 
-**Author:** [JustinFE](https://github.com/JustinFE)
+**Author:** [Justin-Fekri](https://github.com/Justin-Fekri)
 
 ## What I implemented
 
