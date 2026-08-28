@@ -14,5 +14,5 @@ def test_compare_returns_ranked_runs():
     payload = compare_configurations()
     assert payload["best"]
     assert len(payload["runs"]) == 9
-    scores = [row["grounding_score"] for row in payload["runs"]]
+    scores = [row["local_grounding_score"] for row in payload["runs"]]
     assert scores == sorted(scores, reverse=True)
