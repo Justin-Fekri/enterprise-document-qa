@@ -350,11 +350,11 @@ def evaluate_tab(settings: dict) -> None:
         summary = local.get("summary", {})
         st.markdown("##### Current configuration")
         m1, m2, m3, m4, m5 = st.columns(5)
-        m1.metric("Faithfulness", f"{summary.get('faithfulness', 0):.2f}")
-        m2.metric("Relevancy", f"{summary.get('answer_relevancy', 0):.2f}")
+        m1.metric("Answer-context overlap", f"{summary.get('answer_context_overlap', 0):.2f}")
+        m2.metric("Answer-reference overlap", f"{summary.get('answer_reference_overlap', 0):.2f}")
         m3.metric("Context recall", f"{summary.get('context_recall', 0):.2f}")
         m4.metric("Abstention acc.", f"{summary.get('abstention_accuracy', 0):.2f}")
-        m5.metric("Grounding", f"{summary.get('grounding_score', 0):.2f}")
+        m5.metric("Local grounding", f"{summary.get('local_grounding_score', 0):.2f}")
         ragas = st.session_state.eval_single.get("ragas")
         if ragas:
             if ragas.get("available"):
@@ -370,7 +370,7 @@ def evaluate_tab(settings: dict) -> None:
         if best:
             st.success(
                 f"Best grounding: chunk size {best.get('chunk_size')} with "
-                f"{best.get('retrieval_method')} (score {best.get('grounding_score')})."
+                f"{best.get('retrieval_method')} (score {best.get('local_grounding_score')})."
             )
         st.dataframe(compare.get("runs", []), use_container_width=True, hide_index=True)
 

@@ -128,8 +128,8 @@ def evaluate_run(
     unanswerable = [row for row in rows if not row["should_answer"]]
     answered = [row for row in answerable if not row["abstained"]]
 
-    faithfulness = _mean(row["faithfulness"] for row in answered) if answered else 0.0
-    relevancy = _mean(row["answer_relevancy"] for row in answered) if answered else 0.0
+    context_overlap = _mean(row["answer_context_overlap"] for row in answered) if answered else 0.0
+    reference_overlap = _mean(row["answer_reference_overlap"] for row in answered) if answered else 0.0
     recall = (
         sum(1 for row in answerable if not row["abstained"]) / len(answerable)
         if answerable
@@ -150,12 +150,12 @@ def evaluate_run(
         "chunk_size": chunk_size,
         "retrieval_method": method,
         "n_questions": len(rows),
-        "faithfulness": round(faithfulness, 4),
-        "answer_relevancy": round(relevancy, 4),
+        "answer_context_overlap": round(context_overlap, 4),
+        "answer_reference_overlap": round(reference_overlap, 4),
         "context_recall": round(recall, 4),
         "abstention_accuracy": round(abstention_acc, 4),
         "citation_coverage": round(citation_rate, 4),
-        "grounding_score": round(0.5 * faithfulness + 0.3 * relevancy + 0.2 * citation_rate, 4),
+        "local_grounding_score": round(0.5 * context_overlap + 0.3 * reference_overlap + 0.2 * citation_rate, 4),
     }
     return {"summary": summary, "rows": rows}
 
@@ -170,7 +170,7 @@ def compare_configurations(
         for method in methods:
             run = evaluate_run(chunk_size=size, method=method, pipeline=pipeline)
             results.append(run["summary"])
-    ranked = sorted(results, key=lambda row: row["grounding_score"], reverse=True)
+    ranked = sorted(results, key=lambda row: row["local_grounding_score"], reverse=True)
     return {"best": ranked[0] if ranked else None, "runs": ranked}
 
 
@@ -218,8 +218,8 @@ def _score_item(item: dict[str, Any], result: AnswerResult) -> dict[str, Any]:
     contexts = [p.chunk.text for p in result.passages]
     context_blob = " ".join(contexts)
     ground = item.get("ground_truth") or ""
-    faithfulness = 0.0 if result.abstained else lexical_overlap(result.answer, context_blob)
-    relevancy = 0.0 if result.abstained else lexical_overlap(result.answer, item["question"] + " " + ground)
+    context_overlap = 0.0 if result.abstained else lexical_overlap(result.answer, context_blob)
+    reference_overlap = 0.0 if result.abstained else lexical_overlap(result.answer, item["question"] + " " + ground)
     term_hit = 0.0
     if ground and not result.abstained:
         needed = set(tokenize(ground))
@@ -233,8 +233,8 @@ def _score_item(item: dict[str, Any], result: AnswerResult) -> dict[str, Any]:
         "answer": result.answer,
         "abstained": result.abstained,
         "confidence": result.confidence,
-        "faithfulness": round(faithfulness, 4),
-        "answer_relevancy": round(relevancy, 4),
+        "answer_context_overlap": round(context_overlap, 4),
+        "answer_reference_overlap": round(reference_overlap, 4),
         "ground_truth_overlap": round(term_hit, 4),
         "citation_count": len(result.citations),
         "contexts": contexts,

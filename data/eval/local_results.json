@@ -1,0 +1,114 @@
+{
+  "best": {
+    "chunk_size": 512,
+    "retrieval_method": "hybrid",
+    "n_questions": 11,
+    "answer_context_overlap": 0.9671,
+    "answer_reference_overlap": 0.2926,
+    "context_recall": 1.0,
+    "abstention_accuracy": 1.0,
+    "citation_coverage": 1.0,
+    "local_grounding_score": 0.7713
+  },
+  "runs": [
+    {
+      "chunk_size": 512,
+      "retrieval_method": "hybrid",
+      "n_questions": 11,
+      "answer_context_overlap": 0.9671,
+      "answer_reference_overlap": 0.2926,
+      "context_recall": 1.0,
+      "abstention_accuracy": 1.0,
+      "citation_coverage": 1.0,
+      "local_grounding_score": 0.7713
+    },
+    {
+      "chunk_size": 512,
+      "retrieval_method": "tfidf",
+      "n_questions": 11,
+      "answer_context_overlap": 0.9567,
+      "answer_reference_overlap": 0.2926,
+      "context_recall": 1.0,
+      "abstention_accuracy": 1.0,
+      "citation_coverage": 1.0,
+      "local_grounding_score": 0.7661
+    },
+    {
+      "chunk_size": 1024,
+      "retrieval_method": "bm25",
+      "n_questions": 11,
+      "answer_context_overlap": 0.963,
+      "answer_reference_overlap": 0.2723,
+      "context_recall": 1.0,
+      "abstention_accuracy": 1.0,
+      "citation_coverage": 1.0,
+      "local_grounding_score": 0.7632
+    },
+    {
+      "chunk_size": 1024,
+      "retrieval_method": "tfidf",
+      "n_questions": 11,
+      "answer_context_overlap": 0.963,
+      "answer_reference_overlap": 0.2723,
+      "context_recall": 1.0,
+      "abstention_accuracy": 1.0,
+      "citation_coverage": 1.0,
+      "local_grounding_score": 0.7632
+    },
+    {
+      "chunk_size": 1024,
+      "retrieval_method": "hybrid",
+      "n_questions": 11,
+      "answer_context_overlap": 0.963,
+      "answer_reference_overlap": 0.2723,
+      "context_recall": 1.0,
+      "abstention_accuracy": 1.0,
+      "citation_coverage": 1.0,
+      "local_grounding_score": 0.7632
+    },
+    {
+      "chunk_size": 512,
+      "retrieval_method": "bm25",
+      "n_questions": 11,
+      "answer_context_overlap": 0.9278,
+      "answer_reference_overlap": 0.2926,
+      "context_recall": 1.0,
+      "abstention_accuracy": 1.0,
+      "citation_coverage": 1.0,
+      "local_grounding_score": 0.7517
+    },
+    {
+      "chunk_size": 256,
+      "retrieval_method": "hybrid",
+      "n_questions": 11,
+      "answer_context_overlap": 0.9224,
+      "answer_reference_overlap": 0.2728,
+      "context_recall": 1.0,
+      "abstention_accuracy": 1.0,
+      "citation_coverage": 1.0,
+      "local_grounding_score": 0.743
+    },
+    {
+      "chunk_size": 256,
+      "retrieval_method": "bm25",
+      "n_questions": 11,
+      "answer_context_overlap": 0.8987,
+      "answer_reference_overlap": 0.2782,
+      "context_recall": 1.0,
+      "abstention_accuracy": 1.0,
+      "citation_coverage": 1.0,
+      "local_grounding_score": 0.7328
+    },
+    {
+      "chunk_size": 256,
+      "retrieval_method": "tfidf",
+      "n_questions": 11,
+      "answer_context_overlap": 0.9016,
+      "answer_reference_overlap": 0.2728,
+      "context_recall": 1.0,
+      "abstention_accuracy": 1.0,
+      "citation_coverage": 1.0,
+      "local_grounding_score": 0.7326
+    }
+  ]
+}
