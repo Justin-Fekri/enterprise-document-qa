@@ -7,7 +7,7 @@ not read is never retrieved, never sent to the model, and never citable.
 
 `Python` · `FastAPI` · `RAG` · `Hybrid retrieval (BM25 + dense)` · `Streamlit` · `Docker`
 
-[![CI](https://github.com/Justin-Fekri/enterprise-doc-qa/actions/workflows/ci.yml/badge.svg)](https://github.com/Justin-Fekri/enterprise-doc-qa/actions/workflows/ci.yml)
+[![CI](https://github.com/Justin-Fekri/enterprise-document-qa/actions/workflows/ci.yml/badge.svg)](https://github.com/Justin-Fekri/enterprise-document-qa/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/python-3.11%20%7C%203.12-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
