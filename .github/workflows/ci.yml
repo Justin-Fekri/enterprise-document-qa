@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+
+      - name: Install dependencies
+        # The offline hashing embedder covers the test suite, so CI needs
+        # neither model weights nor an API key.
+        run: |
+          python -m pip install --upgrade pip
+          pip install fastapi "uvicorn[standard]" pydantic pydantic-settings \
+            python-multipart PyJWT pypdf python-docx numpy anthropic requests \
+            pytest pytest-cov ruff reportlab httpx
+
+      - name: Lint
+        run: ruff check app tests evaluation scripts ui
+
+      - name: Test
+        env:
+          EMBEDDING_MODEL: hashing
+        run: pytest -q --cov=app --cov-report=term-missing
