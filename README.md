@@ -111,9 +111,34 @@ make eval    # sweep chunk sizes and retrieval modes
 make ragas   # answer-quality scoring (needs ANTHROPIC_API_KEY)
 ```
 
-`evaluation/chunking_experiment.py` sweeps chunk size, overlap and retrieval mode against a fixed
-question set and reports recall@k and MRR, so chunking choices are measured rather than guessed.
+`evaluation/chunking_experiment.py` re-chunks and re-indexes the corpus for every combination of
+chunk size `{128, 256, 512, 1024}` × overlap `{0, 64}` × mode `{dense, sparse, hybrid}`, scoring
+recall@k, MRR, and how many *unanswerable* questions were correctly refused.
 `evaluation/ragas_eval.py` scores faithfulness and answer relevance with RAGAS.
+
+### Results on the sample corpus
+
+Over 13 answerable questions with a known source page and 4 that must be refused:
+
+| Metric | Result |
+|---|---|
+| Recall@3 | 1.00 |
+| MRR | 0.92 |
+| Unanswerable questions correctly refused | 4 / 4 |
+| Answerable questions wrongly refused | 0 / 13 |
+
+**This is not a comparison result, and the report says so.** All 24 configurations scored
+identically. The sample corpus is four short documents in which every answer sits in a passage
+nothing else resembles, so every chunk size and every retrieval method finds it — a property of
+the fixture, not evidence that the choices do not matter. Point `DOCUMENT_DIR` at a real corpus
+and extend `evaluation/questions.py`, and the same sweep will separate them.
+
+The shipped defaults (`chunk_size=512`, `chunk_overlap=64`, `hybrid`) were therefore chosen on
+reasoning, not on this tie. The one threshold the corpus *did* settle is the abstention floor: at
+0.25 an off-topic question slipped through on a loose lexical match; 0.30 refused all four without
+costing any recall, which is why the embedder ships with `relevance_floor = 0.30`.
+
+Full output: [`evaluation/results/retrieval_comparison.md`](evaluation/results/retrieval_comparison.md).
 
 ## Tests
 
