@@ -1,5 +1,10 @@
 # Enterprise Document Question-Answering Assistant
 
+![CI](https://github.com/Justin-Fekri/enterprise-document-qa/actions/workflows/ci.yml/badge.svg)
+![Python](https://img.shields.io/badge/python-3.11+-blue)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.115-009688)
+![License](https://img.shields.io/badge/license-MIT-green)
+
 I built this retrieval-augmented generation (RAG) assistant for enterprise business documents: company policies, audit procedures, risk reports, and cybersecurity documentation.
 
 The stack is **Python**, **FastAPI**, **Streamlit**, and **RAGAS**. The system ingests **PDF** and **Word (.docx)** files, retrieves supporting passages, and returns answers with **page-level citations**. If the documents I can access do not contain enough evidence, the assistant **abstains** instead of guessing. Role-based permissions control who can read, ingest, and evaluate each file.
@@ -7,6 +12,9 @@ The stack is **Python**, **FastAPI**, **Streamlit**, and **RAGAS**. The system i
 This is a 2026 portfolio project. No API key is required to run it. Without a key, answers are extractive (quoted from retrieved passages). Set `OPENAI_API_KEY` for generative answers and RAGAS LLM-as-judge scores.
 
 **Author:** [Justin-Fekri](https://github.com/Justin-Fekri)
+
+![A compliance officer's question answered from the corpus, with page-level citations and a confidence score.](docs/grounded-answer.png)
+
 
 ## What I implemented
 
@@ -38,6 +46,16 @@ Streamlit UI  ──HTTP──►  FastAPI
 | Employee | Public and Internal only | No | No |
 
 Local demo accounts: `admin/admin123`, `compliance/comp123`, `auditor/audit123`, `employee/emp123`. Change these before any shared deployment.
+
+### Access control is enforced on retrieval, not just the UI
+
+The same question, asked by two different roles:
+
+![The same question asked by an employee returns an abstention, because the incident response plan is classified Restricted and is filtered out of retrieval before generation.](docs/rbac-abstention.png)
+
+Jordan Hale (Compliance Officer) asks *"What is the SLA for remediating critical audit findings?"* and gets a grounded answer citing Internal Audit Procedure p. 2 at 80% confidence. Riley Patel (Employee) asks about P1 incident response and the assistant **abstains at 33% confidence** — the incident response plan is classified Restricted, so it never enters the candidate set. The Evaluate tab disappears from their navigation for the same reason.
+
+The assistant refuses because the evidence is not reachable, not because a filter blanked the answer after the fact.
 
 ## Quick start
 
