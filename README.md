@@ -9,7 +9,7 @@ I built this retrieval-augmented generation (RAG) assistant for enterprise busin
 
 The stack is **Python**, **FastAPI**, **Streamlit**, and **RAGAS**. The system ingests **PDF** and **Word (.docx)** files, retrieves supporting passages, and returns answers with **page-level citations**. If the documents I can access do not contain enough evidence, the assistant **abstains** instead of guessing. Role-based permissions control who can read, ingest, and evaluate each file.
 
-This is a 2026 portfolio project. No API key is required to run it. Without a key, answers are extractive (quoted from retrieved passages). Set `OPENAI_API_KEY` for generative answers and RAGAS LLM-as-judge scores.
+No API key is required to run it. Without a key, answers are extractive (quoted from retrieved passages). Set `OPENAI_API_KEY` for generative answers and RAGAS LLM-as-judge scores.
 
 **Author:** [Justin-Fekri](https://github.com/Justin-Fekri)
 
